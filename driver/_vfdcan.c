@@ -5,7 +5,7 @@
 	---------------------------------------------------------------------------
 
 	MIT License
-	Copyright (c) 2019 Io. D
+	Copyright (c) 2019 Ioannis Deligiannis
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -13,10 +13,8 @@
 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	copies of the Software, and to permit persons to whom the Software is
 	furnished to do so, subject to the following conditions:
-
 	The above copyright notice and this permission notice shall be included in all
 	copies or substantial portions of the Software.
-
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -36,6 +34,7 @@
 
 #include "drv_canbus.h"
 
+#ifdef CANBUS_HAL_FDCAN
 #ifdef DRV_CANBUS_ENABLED
 
 /******************************************************************************
@@ -267,7 +266,7 @@ i_status canbus_callback_add(canbus_t* canbus,uint32_t id,uint32_t mask,uint32_t
 {
 	__disable_irq();
 	canbus_callback_t* node = (canbus_callback_t*)malloc(sizeof(canbus_callback_t));
-	
+
 	#if __has_include("FreeRTOS.h")
 	if(node == NULL)
 			node = (canbus_callback_t*)pvPortMalloc(sizeof(canbus_callback_t));
@@ -469,4 +468,5 @@ void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t ErrorSt
 /******************************************************************************
 * EOF - NO CODE AFTER THIS LINE
 ******************************************************************************/
+#endif
 #endif

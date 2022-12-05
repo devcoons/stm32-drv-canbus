@@ -1,12 +1,10 @@
 /*!
-	@file   drv_canbus.h
+	@file   drv_canbus_config.h
 	@brief  <brief description here>
 	@t.odo	-
 	---------------------------------------------------------------------------
-
 	MIT License
-	Copyright (c) 2019 Ioannis Deligiannis
-
+	Copyright (c) 2022 Io.D
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
 	in the Software without restriction, including without limitation the rights
@@ -22,26 +20,15 @@
 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
+	This file provides firmware functions to manage the following
+	functionalities of the EEPROM:
+	+ Initialization and de-initialization functions
+	+ store input value in a buffer for debouncing
+	+ setting Output value
 */
 /******************************************************************************
 * Preprocessor Definitions & Macros
 ******************************************************************************/
 
-#ifndef DRV_CANBUS_H_
-#define DRV_CANBUS_H_
-
-#if __has_include("../drv_canbus_config.h")
-	#include "../drv_canbus_config.h"
-#else
-	#error "Missing drv_canbus_config.h. The library is disabled"
-#endif
-
-#ifdef CANBUS_HAL_FDCAN
-	#include "driver/_vfdcan.h"
-#elif defined(CANBUS_HAL_CAN)
-	#include "driver/_vcan.h"
-#else
-	#error "Missing proper configuration of drv_canbus_config.h. The library is disabled"
-#endif
-
-#endif
+#define CANBUS_HAL_CAN
+//#define CANBUS_HAL_FDCAN
